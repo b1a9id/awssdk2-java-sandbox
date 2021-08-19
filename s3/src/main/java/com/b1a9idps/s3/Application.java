@@ -7,5 +7,6 @@ public class Application {
         final var s3ObjectService = new S3ObjectService();
 
         s3ObjectService.list("uchitate-bucket", "aws-sdk2-sandbox");
+        s3ObjectService.getObject("uchitate-bucket", "aws-sdk2-sandbox/test.zip");
     }
 }

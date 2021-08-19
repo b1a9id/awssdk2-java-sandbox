@@ -1,6 +1,12 @@
 package com.b1a9idps.s3.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
+import software.amazon.awssdk.core.sync.ResponseTransformer;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.S3Exception;
 
@@ -11,8 +17,6 @@ public class S3ObjectService {
 
     /**
      * オブジェクトのリストを取得
-     * @param bucketName
-     * @param prefix
      */
     public void list(String bucketName, String prefix) {
         try {
@@ -30,6 +34,22 @@ public class S3ObjectService {
                     });
         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
+            System.exit(1);
+        }
+    }
+
+    /**
+     * オブジェクトをダウンロード
+     */
+    public void getObject(String bucketName, String key) {
+        var s3ObjectResponseInputStream =
+                s3Client.getObject(builder -> builder.bucket(bucketName).key(key).build(), ResponseTransformer.toInputStream());
+        try {
+            Path tempFilePath = Files.createTempDirectory(bucketName).resolve("test.zip");
+            Files.write(tempFilePath, s3ObjectResponseInputStream.readAllBytes());
+            System.out.println(tempFilePath);
+        } catch (IOException e) {
+            System.err.println(Arrays.toString(e.getStackTrace()));
             System.exit(1);
         }
     }
