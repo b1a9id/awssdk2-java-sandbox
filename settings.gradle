@@ -1,2 +1,3 @@
 rootProject.name = 'awssdk2-java-sandbox'
+include 's3'
 

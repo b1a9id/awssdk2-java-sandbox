@@ -1,5 +1,11 @@
 plugins {
     id 'java'
+    id 'idea'
+}
+
+ext {
+    set('awsSdkVersion', '2.17.21')
+    set('jUnitVersion', '5.7.2')
 }
 
 group 'com.b1a9idps'
@@ -9,10 +15,6 @@ targetCompatibility = JavaVersion.VERSION_16
 
 repositories {
     mavenCentral()
-}
-
-dependencies {
-
 }
 
 wrapper {
