@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'com.b1a9idps'
+version '1.0-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_16
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
+
+wrapper {
+    gradleVersion = "7.2"
+    distributionType = Wrapper.DistributionType.ALL
+}
