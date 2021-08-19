@@ -11,6 +11,7 @@ dependencies {
     implementation platform("org.junit:junit-bom:$jUnitVersion")
 
     implementation "software.amazon.awssdk:s3"
+    implementation "software.amazon.awssdk:iam"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
