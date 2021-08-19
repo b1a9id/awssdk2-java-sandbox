@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform("software.amazon.awssdk:bom:$awsSdkVersion")
+    implementation platform("org.junit:junit-bom:$jUnitVersion")
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+}
+
+test {
+    useJUnitPlatform()
+}
